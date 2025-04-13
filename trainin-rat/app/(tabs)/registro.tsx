@@ -8,9 +8,18 @@ export default function RegistroAtividade() {
   const router = useRouter();
 
   const registrar = () => {
+    if(!validateInput()) return; // Verifica se os campos estão preenchidos
     console.log('Atividade:', atividade, 'Valor:', valor);
     router.back(); // volta pra tela anterior
   };
+
+  const validateInput = () => {
+    if (!atividade || !valor) {
+      alert('Por favor, preencha todos os campos.');
+      return false;
+    }
+    return true;
+  }
 
   return (
     <View style={{ flex: 1, padding: 16 }}>
@@ -21,7 +30,7 @@ export default function RegistroAtividade() {
         placeholder="Ex: Bicicleta"
         style={{ borderWidth: 1, marginBottom: 12 }}
       />
-      <Text>Valor</Text>
+      <Text>Piece</Text>
       <TextInput
         value={valor}
         onChangeText={setValor}
@@ -31,4 +40,5 @@ export default function RegistroAtividade() {
       <Button title="Registrar" onPress={registrar} />
     </View>
   );
+
 }
